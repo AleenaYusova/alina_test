@@ -116,36 +116,3 @@ def sms_check_code(number_to_get_sms_check_code):
     assert response["jsonrpc"]
     assert response["id"] is '1'
     return response["result"]["check_code_code"]
-
-def delete_customer(pzv_customer_login_email):
-        print(inspect.stack()[0][3])
-        # url = "http://172.16.104.159:88/api/v1/customer"
-        # host = "bapi.preprod.dmz.mtt.ru" # preprod
-        # host = "172.16.104.159:88" # prod
-        proto = Config().bapi_proto
-        host = Config().bapi_host
-        basic_b64 = Config().bapi_basic_b64
-        url = proto + "://" + host + "/api/v1/customer"
-        headers = {'content-type': 'application/json',
-                   'Authorization': 'Basic ' + basic_b64}
-        print(url)
-        print(headers)
-
-        payload = {
-            "id": "1",
-            "jsonrpc": "2.0",
-            "method": "makeContractTermination",
-            "params":
-                {
-                    "customer_login": pzv_customer_login_email
-                }
-        }
-        print(payload)
-        response = requests.post(
-            url, data=json.dumps(payload), headers=headers).json()
-        print(response)
-        assert response["result"] == {
-            "success": 1
-        }
-        assert response["jsonrpc"]
-        assert response["id"] is '1'

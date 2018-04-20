@@ -1,17 +1,50 @@
 # -*- coding: utf-8 -*-
 #
 from selenium import webdriver
+import AccountingFilter
+import ActionHistoryPage
+import AdminSettingsPage
+import BuyNumber
+import CallbackPage
+import CallbackServicesPage
+import CallbackSettingsPage
+import CallProcessingPage
+import CLI
 import configparser
+import ContractAmendment
+import DetailedCallsPage
+import DidFreeDefPages
+import DocumentsPage
+import ExpensesPage
+import FaxPage
+import GroupPage
+import Header
+import HomePage
 import inspect
-import PozvonimStartPage
-import PozvonimLoginPage
-import PozvonimLandingPage
-import PozvonimRegistrationPage
-import PozvonimMainPage
-import MTTB_Page
+import JournalCalls
+import JournalFilters
+import LKM
+import Login
+import NotificationPage
+import Pagination
+import PaymentsPage
+import ServicesPage
+import SetCallForwardsAndIVR
+import ShopfrontQuickSignUp
+import SIMpage
 import sqltestfile
+import SupportPage
 import traceback
 import unittest
+import VoiceMailPage
+import VoiceRecordPage
+import VoIPPpage
+import VPBXpage
+import VPBXSettings
+import WorkplaceCallForwardSchema
+import WorkplaceFMCSection
+import WorkplacePage
+import WorkplaceSettings
 
 
 class SetUpFile(unittest.TestCase):
@@ -25,24 +58,63 @@ class SetUpFile(unittest.TestCase):
         # """ Переход по URL из конфиг.файла"""
         # self.driver.get(self.url_path)
 
-        """ Присваивание классов страниц
-        Если вы создали новый файл, добавьте его в этот список"""
+        """ Присваивание классов страниц """
+        self.login_page = Login.Login(self.driver)
+        self.header = Header.Header(self.driver)
+        self.action_history_page = ActionHistoryPage.ActionHistoryPage(self.driver)
+        self.accounting_filter = AccountingFilter.AccountingFilter(self.driver)
+        self.admin_settings_page = AdminSettingsPage.AdminSettingsPage(self.driver)
+        self.buy_number = BuyNumber.BuyNumber(self.driver)
+        self.callback_page = CallbackPage.CallbackPage(self.driver)
+        self.callback_services_page = \
+            CallbackServicesPage.CallbackServicesPage(self.driver)
+        self.callback_settings_page = \
+            CallbackSettingsPage.CallbackSettingsPage(self.driver)
+        self.cli = CLI.CLI(self.driver)
+        self.contract_amendment = ContractAmendment.ContractAmendment(self.driver)
+        self.home_page = HomePage.HomePage(self.driver)
+        self.call_processing_page = \
+            CallProcessingPage.CallProcessingPage(self.driver)
+        self.journal_calls = JournalCalls.JournalCalls(self.driver)
+        self.journal_filters = JournalFilters.JournalFilters(self.driver)
+        self.vpbx_ettings = VPBXSettings.VPBXSettings(self.driver)
+        self.did_free_def_pages = DidFreeDefPages.DidFreeDefPages(self.driver)
+        self.notification_page = NotificationPage.NotificationPage(self.driver)
+        self.pagination = Pagination.Pagination(self.driver)
+        self.payments_page = PaymentsPage.PaymentsPage(self.driver)
+        self.detailed_calls_page = DetailedCallsPage.DetailedCallsPage(self.driver)
+        self.documents_page = DocumentsPage.DocumentsPage(self.driver)
+        self.group_page = GroupPage.GroupPage(self.driver)
+        self.expenses_page = ExpensesPage.ExpensesPage(self.driver)
+        self.services_page = ServicesPage.ServicesPage(self.driver)
+        self.voip_page = VoIPPpage.VoIPPpage(self.driver)
+        self.support_page = SupportPage.SupportPage(self.driver)
+        self.set_call_forwards_and_ivr = SetCallForwardsAndIVR.\
+            SetCallForwardsAndIVR(self.driver)
+        self.workplace_call_forward_schema = WorkplaceCallForwardSchema.\
+            WorkplaceCallForwardSchema(self.driver)
+        self.sim_page = SIMpage.SimPage(self.driver)
+        self.shopfront_quick_signup = \
+            ShopfrontQuickSignUp.ShopfrontQuickSignUp(self.driver)
+        self.voice_mail_page = VoiceMailPage.VoiceMailPage(self.driver)
+        self.fax_page = FaxPage.FaxPage(self.driver)
+        self.voice_record_page = VoiceRecordPage.VoiceRecordPage(self.driver)
+        self.vpbx_page = VPBXpage.VpbxPage(self.driver)
+        self.workplace_fmc_section = WorkplaceFMCSection.\
+            WorkplaceFMCSection(self.driver)
+        self.workplace_page = WorkplacePage.WorkplacePage(self.driver)
+        self.workplace_settings = WorkplaceSettings.WorkplaceSettings(self.driver)
+        self.lkm = LKM.LKM(self.driver)
         self.sql = sqltestfile.Query()
-        self.pozvonim_start_page = PozvonimStartPage.PozvonimStartPage(self.driver)
-        self.pozvonim_login_page = PozvonimLoginPage.PozvonimLoginPage(self.driver)
-        self.pozvonim_registration_page = PozvonimRegistrationPage.PozvonimRegistrationPage(self.driver)
-        self.pozvonim_landing_page = PozvonimLandingPage.PozvonimLandingPage(self.driver)
-        self.pozvonim_main_page = PozvonimMainPage.PozvonimMainPage(self.driver)
-        self.mttb_page = MTTB_Page.MTTB_Page(self.driver)
 
     """ Переменные для переключения конфига """
-    which_environment = 'prod-config'
+    # which_environment = 'prod-config'
     # which_environment = 'pp1-config'
-    # which_environment = 'pp3-config'
+    which_environment = 'pp3-config'
 
     """В конфиг собранны все ссылки и доступы на портал"""
     configParser = configparser.RawConfigParser()
-    prodConfigFilePath = r'C:\MTTB-Autotest\python' \
+    prodConfigFilePath = r'C:\MTTBPageObjectTestProject\python' \
                          r'\configurationfile'
     configParser.read(prodConfigFilePath)
     lka_login_link = configParser.get(which_environment, 'user_auth1_link')
@@ -59,27 +131,14 @@ class SetUpFile(unittest.TestCase):
     bapi_host = configParser.get(which_environment, 'bapi_host')
     bapi_proto = configParser.get(which_environment, 'bapi_proto')
     bapi_basic_b64 = configParser.get(which_environment, 'bapi_basic_b64')
-    pzv_start_page = configParser.get(which_environment, 'pzv_start_page')
-    pzv_login_link = configParser.get(which_environment, 'pzv_login_link')
-    pzv_registration_page = configParser.get(which_environment, 'pzv_registration_page')
-    pzv_landing_page = configParser.get(which_environment, 'pzv_landing_page')
-    mttb_page = configParser.get(which_environment, 'mttb_page')
-    pzv_user_login = configParser.get(which_environment, 'pzv_userLogin')
-    pzv_website = configParser.get(which_environment, 'pzv_website')
-    pzv_managername = configParser.get(which_environment, 'pzv_managername')
-    pzv_managerphone = configParser.get(which_environment, 'pzv_managerphone')
-    pzv_manageremail = configParser.get(which_environment, 'pzv_manageremail')
-    pzv_managerpassword = configParser.get(which_environment, 'pzv_managerpassword')
-    pzv_helloworld = configParser.get(which_environment, 'pzv_helloworld')
-    pzv_clientphone = configParser.get(which_environment,'pzv_clientphone')
-    pzv_dateofissue = configParser.get(which_environment,'pzv_dateofissue')
-    pzv_issuedby = configParser.get(which_environment,'pzv_issuedby')
-    pzv_passportbirthplace = configParser.get(which_environment,'pzv_passportbirthplace')
-    pzv_passportaddress = configParser.get(which_environment,'pzv_passportaddress')
-    pzv_passportsurname = configParser.get(which_environment,'pzv_passportsurname')
-    pzv_passportname = configParser.get(which_environment,'pzv_passportname')
-    pzv_dateofbirth = configParser.get(which_environment,'pzv_dateofbirth')
-
+    lkm_url = (configParser.get(which_environment, 'user_auth1_link')
+                               + configParser.get(which_environment, 'manager_auth_link'))
+    customer_password = configParser.get(which_environment, 'userPassword')
+    manager_login = configParser.get(which_environment, 'manager_login')
+    manager_password = configParser.get(which_environment, 'manager_password')
+    manager_login_security = configParser.get(which_environment, 'manager_login_security')
+    manager_password_security = \
+        configParser.get(which_environment, 'manager_password_security')
 
     def exception_print(self):
         """Вызывается в случае ошибки в тесте.

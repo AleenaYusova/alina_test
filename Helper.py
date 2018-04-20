@@ -53,26 +53,13 @@ class GenerateCustomerData:
     @staticmethod
     def generate_customer_login_email():
         timestamp = int(time.time())
-        return str(timestamp) + "@autotest.ru"
+        return str(timestamp) + "@auto.test"
 
     @staticmethod
     def generate_customer_phone_number():
         timestamp = int(time.time())
         timestamp = str(timestamp)
         return "7" + str(timestamp).replace(timestamp[0:1], '9')
-
-    @staticmethod
-    def generate_passport_series():
-        timestamp = int(time.time())
-        timestamp = str(timestamp)
-        return str(timestamp[0:4])
-
-    @staticmethod
-    def generate_passport_number():
-        timestamp = int(time.time())
-        timestamp = str(timestamp)
-        return str(timestamp[0:6])
-
 
 class ActionChainsClass(init_driver.InitDriver):
     def move_to_element_and_click(self, element_to_move_to, element_to_click):
@@ -102,8 +89,3 @@ def get_timestamp():
 class ScreenShot(init_driver.InitDriver):
     def take_screen_shot_in_base64_format(self):
         print(self.driver.get_screenshot_as_base64())
-
-    # def update_customer_field(self):
-    #     print(inspect.stack()[0][3])
-    #     time.sleep(5)
-    #     update_customer_field = myjson.update_customer_custom_fields()

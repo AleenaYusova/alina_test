@@ -160,33 +160,11 @@ import time
 # if __name__ == '__main__':
 #     unittest.main(argv=[sys.argv[0]])
 
-# def myfunction(c):
-#     a = 0
-#     b = 0
-#     if c is 0:
-#         a = a >= 14
-#         b = b >= 14
-#     elif c > 0:
-#         a = a
-#
-# phone = "795551112233"
-# print(phone[1:7:])
-
-# def test(phrase,letter):
-#     counter = 0
-#
-#     for i in phrase:
-#         if i == letter:
-#             counter = counter + 1
-#
-#     print(counter)
-# test(phrase="vkxvhkjv",letter='v')
-
-def get_timestamp():
-    timestamp = int(time.time())
-    return str(timestamp)
-
-# @staticmethod
-# def generate_series_passport():
-#     timestamp = int(time.time())
-#     return str(timestamp[0:4:1])
+def myfunction(c):
+    a = 0
+    b = 0
+    if c is 0:
+        a = a >= 14
+        b = b >= 14
+    elif c > 0:
+        a = a

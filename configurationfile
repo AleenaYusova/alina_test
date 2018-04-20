@@ -11,40 +11,7 @@ capi_customer_account_prefix = pp
 bapi_host = bapi-test.rnd.mtt
 bapi_proto = http
 bapi_basic_b64 = cG9ydGFsLm10dC1idXNpbmVzczpXSiZOUUY2dm80b3Q=
-
-
-[prod-config]
-pzv_start_page = https://pozvonim.com
-pzv_login_link = https://my.pozvonim.com
-pzv_registration_page = https://my.pozvonim.com/register
-pzv_main_page = https://my.pozvonim.com
-mttb_page = https://business.mtt.ru/accounting/documents/editContract
-pzv_landing_page = http://avdovenko21.landing.pozvonim.rnd.mtt/
-pzv_userLogin = pzv1522325992@autotest.ru
-pzv_website = http://avdovenko21.landing.pozvonim.rnd.mtt/
-pzv_managername = Ernest_Hemingway
-pzv_managerphone = +79173261405
-pzv_clientphone = 9778778048
-pzv_manageremail = tt@tt1g8htt.ru
-pzv_managerpassword = 123456qw
-pzv_dateofissue = 10.08.2011
-pzv_dateofbirth = 10.08.1985
-pzv_issuedby = U_F_M_S_test
-pzv_passportbirthplace = Philadelphia
-pzv_passportaddress = 5th Avenue
-pzv_passportsurname = Cowperwood
-pzv_passportname = Frank
-pzv_helloworld = PozvonimTeam
-user_auth1_link = http://bizportal-test.rnd.mtt
-manager_auth_link = /manager/login
-shopfront_link = http://shop-test.rnd.mtt
-userLogin = dpanfilov_test197@mtt.ru
-userPassword = 123456qw
-capi_host = https://webapicommon.mtt.ru/index.php
-capi_basic_b64 = bXR0LWJ1c2luZXNzOm81aEUwTGRTeUFjTA==
-capi_basic_b64_for_sms_check_code = bXR0LWJ1c2luZXNzLXVuaXR0ZXN0OmtQN0Fyck1HbnFycQ==
-capi_customer_account_prefix = pp
-bapi_host = bapi-test.rnd.mtt
-bapi_proto = http
-bapi_basic_b64 = cG9ydGFsLm10dC1idXNpbmVzczpXSiZOUUY2dm80b3Q=
-
+manager_login = dpanfilov_test181@mtt.ru
+manager_password = UtnrwTsV
+manager_login_security = dpanfilov_test182@mtt.ru
+manager_password_security = AulWpZ1b
